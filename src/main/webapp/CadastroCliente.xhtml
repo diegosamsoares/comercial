@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<style>
+		li{
+		margin-bottom: 15px;
+		}
+		
+		
+		.tabela{
+		width: 50%;}
+		
+		h1{font-family: sans-serif;
+		   font-weight: bolder;
+		   font-size: 20pt;
+		   color: blue;
+		  text-align: center;
+		}
+	</style>
+
+</h:head>
+	<h1>Cadastrar Clientes</h1>
+
+	<h:body>
+		<h:form>
+		<ul style="list-style-type:none">
+		  <li><p:outputLabel value="Nome"></p:outputLabel></li>
+		  <li><p:inputText label="Nome" id="Nome" maxlength="200" size="50" value="#{clienteBean.cliente.nome}"/></li>
+		  <li><p:outputLabel value="Telefone"></p:outputLabel></li>
+		  <li><p:inputText label="Telefone" id="Telefone" value="#{clienteBean.cliente.telefone}" /></li>
+		 
+		  <li><p:commandButton value="Salvar" action="#{clienteBean.imprimir}"></p:commandButton></li>
+		 
+		  <li>
+		  
+		  <p:dataTable resizableColumns="true" styleClass="tabela" value="#{clienteBean.clientes}" var="cliente">
+			<p:column headerText="Nome" width="150px">
+		        <h:outputText value="#{cliente.nome}" />
+		    </p:column>
+		    
+		    <p:column headerText="Telefone" width="150px">
+		        <h:outputText value="#{cliente.telefone}" />
+		    </p:column>
+		   </p:dataTable>
+		</li>
+		</ul>
+		
+		</h:form>
+	</h:body>
+</html>

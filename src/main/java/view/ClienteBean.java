@@ -1,31 +1,35 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
+import dao.ClienteDao;
 import modelo.Cliente;
 
+@ViewScoped
 @ManagedBean
 public class ClienteBean {
 
-	private Cliente cliente= new Cliente();
-	private List<Cliente> clientes = new ArrayList<>();
+	private Cliente cliente;
+	private List<Cliente> clientes ;
+	ClienteDao dao = new ClienteDao();
 	
-	
+	public ClienteBean() {
+		System.out.println("passou");
+		this.cliente= new Cliente();
+	}
 	@PostConstruct
 	private void init() {
-		Cliente cli = new Cliente();
-		cli.setNome("Diego");
-		cli.setTelefone(8484848);
-		this.clientes.add(cli);
-		
+		this.clientes = dao.listaTodos();
 	}
 	
 	public void salvar() {
-		System.out.println(cliente.getNome()+"-"+cliente.getTelefone());
+		dao.salva(cliente);
+		cliente=new Cliente();
+		this.clientes = dao.listaTodos();
 	}
 
 	public Cliente getCliente() {

@@ -18,7 +18,8 @@
 		   font-weight: bolder;
 		   font-size: 20pt;
 		   color: blue;
-		  text-align: center;
+		  text-align: left;
+		  margin-left: 45px;
 		}
 	</style>
 
@@ -26,18 +27,18 @@
 	<h1>Cadastrar Clientes</h1>
 
 	<h:body>
-		<h:form>
+		<h:form id="form">
 		<ul style="list-style-type:none">
 		  <li><p:outputLabel value="Nome"></p:outputLabel></li>
 		  <li><p:inputText label="Nome" id="Nome" maxlength="200" size="50" value="#{clienteBean.cliente.nome}"/></li>
 		  <li><p:outputLabel value="Telefone"></p:outputLabel></li>
 		  <li><p:inputText label="Telefone" id="Telefone" value="#{clienteBean.cliente.telefone}" /></li>
 		 
-		  <li><p:commandButton value="Salvar" action="#{clienteBean.imprimir}"></p:commandButton></li>
+		  <li><p:commandButton value="Salvar" action="#{clienteBean.salvar}" update="tabela" ajax="false"></p:commandButton></li>
 		 
 		  <li>
 		  
-		  <p:dataTable resizableColumns="true" styleClass="tabela" value="#{clienteBean.clientes}" var="cliente">
+		  <p:dataTable resizableColumns="true" styleClass="tabela" id="tabela" value="#{clienteBean.clientes}" paginator="true" rows="10" rowsPerPageTemplate="5,10,15" var="cliente">
 			<p:column headerText="Nome" width="150px">
 		        <h:outputText value="#{cliente.nome}" />
 		    </p:column>

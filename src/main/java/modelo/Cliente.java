@@ -1,6 +1,5 @@
 package modelo;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,9 +10,7 @@ public class Cliente {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column
 	private String nome;
-	@Column
 	private Integer telefone;
 
 	public String getNome() {
